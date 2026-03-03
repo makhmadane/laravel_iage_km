@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssuranceController;
+use App\Http\Controllers\TypeController;
 use App\Models\Assurance;
 use Illuminate\Support\Facades\Route;
 
@@ -49,4 +50,14 @@ Route::get('/iage', function () {
 
 });
 
-Route::get('/assurance', [AssuranceController::class,'index']);
+//Assurance
+Route::get('/assurance', [AssuranceController::class,'index'])->name('assurance');
+Route::get('/addAssurance', [AssuranceController::class,'create'])->name('addAssurance');
+Route::post('/storeAssurance', [AssuranceController::class,'store'])->name('storeAssurance');
+Route::delete('/deleteAssurance/{id}', [AssuranceController::class,'destroy'])->name('deleteAssurance');
+Route::get('/editAssurance/{id}', [AssuranceController::class,'edit'])->name('editAssurance');
+
+//Type Assuranceé
+
+Route::get('/type', [TypeController::class,'index'])->name('type');
+

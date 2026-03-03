@@ -1,17 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body>
+@extends('template')
 
-    <div class="container mt-5">
-        <button class="btn btn-success">Add</button>
+@section('content')
+        <a class="btn btn-success" href="{{route('addAssurance')}}">Add</a>
         <table class="table table-striped">
             <tr>
                 <td>ID</td>
@@ -29,14 +19,16 @@
                     <td>{{$a->montant}}</td>
                     <td>{{$a->bonus}}</td>
                     <td>
-                        <button class="btn btn-danger">Supprimer</button>
-                        <button class="btn btn-primary">Modifier</button>
+                        <form action="{{route('deleteAssurance',[$a->id])}}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger" type="submit">Supprimer</button>
+                        </form>
+
+                        <a class="btn btn-primary"  href="{{route('editAssurance',[$a->id])}}">Modifier</a>
                     </td>
 
                 </tr>
             @endforeach
         </table>
-
-    </div>
-</body>
-</html>
+@endsection
