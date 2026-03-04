@@ -56,7 +56,7 @@ Route::get('/addAssurance', [AssuranceController::class,'create'])->name('addAss
 Route::post('/storeAssurance', [AssuranceController::class,'store'])->name('storeAssurance');
 Route::delete('/deleteAssurance/{id}', [AssuranceController::class,'destroy'])->name('deleteAssurance');
 Route::get('/editAssurance/{id}', [AssuranceController::class,'edit'])->name('editAssurance');
-
+Route::put('/updateAssurance', [AssuranceController::class,'update'])->name('updateAssurance');
 //Type Assuranceé
 
 Route::get('/type', [TypeController::class,'index'])->name('type');

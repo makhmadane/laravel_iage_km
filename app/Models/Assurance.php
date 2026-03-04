@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Assurance extends Model
 {
     use HasFactory;
+
+    function type(){
+        return $this->belongsTo('App\Models\Type');
+    }
 }

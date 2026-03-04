@@ -1,6 +1,15 @@
 @extends('template')
 
 @section('content')
+
+    @if(session('success'))
+        <div class="alert alert-success">{{session('success')}}</div>
+    @endif
+
+    @if(session('delete'))
+        <div class="alert alert-danger">{{session('delete')}}</div>
+    @endif
+
         <a class="btn btn-success" href="{{route('addAssurance')}}">Add</a>
         <table class="table table-striped">
             <tr>
@@ -8,6 +17,7 @@
                 <td>Libelle</td>
                 <td>Montant</td>
                 <td>Bonus</td>
+                <td>Types</td>
                 <td>Options</td>
 
             </tr>
@@ -18,6 +28,7 @@
                     <td>{{$a->libelle}}</td>
                     <td>{{$a->montant}}</td>
                     <td>{{$a->bonus}}</td>
+                    <td>{{$a->type->libelle}}</td>
                     <td>
                         <form action="{{route('deleteAssurance',[$a->id])}}" method="post">
                             @csrf
@@ -31,4 +42,5 @@
                 </tr>
             @endforeach
         </table>
+    {{$assurances->links()}}
 @endsection
