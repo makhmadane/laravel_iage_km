@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class AssuranceController extends Controller
 {
     public function index(){
-        $assurances = Assurance::paginate(3); //model
+        $assurances = Assurance::orderByDesc('id')->paginate(3); //model
         return view('assurance.liste', compact('assurances')); //VIEW
     }
 
@@ -20,12 +20,27 @@ class AssuranceController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate(
+            [
+                'libelle'=> 'required|max:50',
+                'montant'  =>  'required|numeric',
+                'bonus' =>  'required',
+                'type_id'  =>  'required',
+                'image' => 'mimes:jpeg,jpg,png|max:2048'
+            ]
+        );
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('assurance', 'public');
+        }
+
 
         $assurance = new Assurance();
         $assurance->libelle = $request['libelle'];
         $assurance->montant = $request['montant'];
         $assurance->bonus  = $request['bonus'];
         $assurance->type_id = $request['type_id'];
+        $assurance->image = $imagePath;
 
         $assurance->save();
 
@@ -46,6 +61,16 @@ class AssuranceController extends Controller
     }
 
     public function update(Request $request){
+        $request->validate(
+            [
+                'libelle'=> 'required|max:50',
+                'montant'  =>  'required|numeric',
+                'bonus' =>  'required',
+                'type_id'  =>  'required',
+
+            ]
+        );
+
        $assurance = Assurance::find($request['id']);
        $assurance->libelle = $request['libelle'];
        $assurance->montant = $request['montant'];

@@ -13,7 +13,7 @@
         <a class="btn btn-success" href="{{route('addAssurance')}}">Add</a>
         <table class="table table-striped">
             <tr>
-                <td>ID</td>
+                <td>Image</td>
                 <td>Libelle</td>
                 <td>Montant</td>
                 <td>Bonus</td>
@@ -24,7 +24,9 @@
 
             @foreach($assurances as $a)
                 <tr>
-                    <td>{{$a->id}}</td>
+                    <td>
+                        <img src="{{ asset('storage/'.$a->image) }}" width="70">
+                    </td>
                     <td>{{$a->libelle}}</td>
                     <td>{{$a->montant}}</td>
                     <td>{{$a->bonus}}</td>
