@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('assurance')}}">Liste des assurances</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('assurance.index')}}">Liste des assurances</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('type')}}">Liste des types assurances</a>

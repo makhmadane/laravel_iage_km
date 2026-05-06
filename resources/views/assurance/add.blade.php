@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <form method="post" action="{{route($assurance->exists ? 'updateAssurance' : 'storeAssurance')}}" enctype="multipart/form-data">
+    <form method="post" action="{{route($assurance->exists ? 'assurance.update' : 'assurance.store',[$assurance])}}" enctype="multipart/form-data">
         @csrf
         @method($assurance->exists ? 'put': 'post' )
 

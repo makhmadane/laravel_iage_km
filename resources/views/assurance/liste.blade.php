@@ -10,7 +10,7 @@
         <div class="alert alert-danger">{{session('delete')}}</div>
     @endif
 
-        <a class="btn btn-success" href="{{route('addAssurance')}}">Add</a>
+        <a class="btn btn-success" href="{{route('assurance.create')}}">Add</a>
         <table class="table table-striped">
             <tr>
                 <td>Image</td>
@@ -32,13 +32,13 @@
                     <td>{{$a->bonus}}</td>
                     <td>{{$a->type->libelle}}</td>
                     <td>
-                        <form action="{{route('deleteAssurance',[$a->id])}}" method="post">
+                        <form action="{{route('assurance.destroy',[$a->id])}}" method="post">
                             @csrf
                             @method('delete')
                             <button class="btn btn-danger" type="submit">Supprimer</button>
                         </form>
 
-                        <a class="btn btn-primary"  href="{{route('editAssurance',[$a->id])}}">Modifier</a>
+                        <a class="btn btn-primary"  href="{{route('assurance.edit',[$a->id])}}">Modifier</a>
                     </td>
 
                 </tr>

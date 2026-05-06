@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AssuranceRequest;
 use App\Models\Assurance;
 use App\Models\Type;
 use Illuminate\Http\Request;
@@ -19,16 +20,7 @@ class AssuranceController extends Controller
         return view('assurance.add', compact('assurance','types'));
     }
 
-    public function store(Request $request){
-        $request->validate(
-            [
-                'libelle'=> 'required|max:50',
-                'montant'  =>  'required|numeric',
-                'bonus' =>  'required',
-                'type_id'  =>  'required',
-                'image' => 'mimes:jpeg,jpg,png|max:2048'
-            ]
-        );
+    public function store(AssuranceRequest $request){
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('assurance', 'public');
@@ -60,16 +52,8 @@ class AssuranceController extends Controller
         return view('assurance.add', compact('assurance','types'));
     }
 
-    public function update(Request $request){
-        $request->validate(
-            [
-                'libelle'=> 'required|max:50',
-                'montant'  =>  'required|numeric',
-                'bonus' =>  'required',
-                'type_id'  =>  'required',
+    public function update(AssuranceRequest $request){
 
-            ]
-        );
 
        $assurance = Assurance::find($request['id']);
        $assurance->libelle = $request['libelle'];
